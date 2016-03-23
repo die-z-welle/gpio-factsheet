@@ -64,9 +64,9 @@ bindingoffset=0mm, top=20mm,bottom=20mm}
 	\textbf{Übertragungsraten} & -\\\hline
 	\textbf{Anschluss} & -\\\hline
 	\textbf{Topologie} & -\\\hline
-	\textbf{Synchron/Asynchron} & -\\\hline
-	\textbf{Fehlervermeidung} & -\\\hline
-	\textbf{Adressierung} & -\\\hline
+	\textbf{Synchron/Asynchron} & Beides möglich\\\hline
+	\textbf{Fehlervermeidung} & 5V tolerante Inputs (Prävention gegenüber zu hoher Spannung)\\\hline
+	\textbf{Adressierung} & PIN-weise (PINS sind nummeriert)\\\hline
 	\textbf{Weitere Geräte} & 
 	\begin{itemize}
 		\item LEDs
@@ -78,13 +78,40 @@ bindingoffset=0mm, top=20mm,bottom=20mm}
 GPIO steht für "General Purpose Input/Output" und es handelt sich dabei um einen Pin auf einem Integrierten Schaltkreis, welcher keiner bestimmten Funktion zugeordnet ist, sondern vom Benutzer des Geräts nach Wünschen eingesetzt werden kann. Als GPIO Port wird eine Menge von typischerweise 8 Pins bezeichnet, welche als Gruppe kontrolliert werden. Ports oder einzelne PINs können als Input oder Output konfiguriert werden und disabled beziehungsweise enabled werden. \\
 Ein Pin kann die Werte 1 (High) oder 0 (Low) entsprechend der Spannung annehmen. Eine Port von 8 Pins kann also Werte von 0 (00000000) bis 255 (11111111) parallel übertragen.
 	
+\section{GPIO auf dem Raspberry Pi}
+\subsection{Betriebsspannung}
+GPIO funktioniert für verschiedene Spannungslevels (meist zwischen 2V und 5V). Das Raspberry arbeitet mit max. 3.3V Spannung für diese PINS. Während eine Schreiboperation auf 5V-GPIO-Geräte möglich ist, muss beachtet werden, dass dieses Gerät seinerseits keine Schreiboperation auf die PINS des Raspberrys ausführt.
+
+\subsection{PIN Nummerierung}
+Das Raspberry unterstützt grundlegend zwei Modi, über welche die GPIO PINS angesteuert werden.
+\begin{tabular}{| p{2cm} | p{7cm} | p{7cm} | }
+	\hline
+	\textbf{} & \textbf{Vorteile} & \textbf{Nachteile} \\\hline
+	\textbf{BCM} & 
+			\begin{itemize}
+				\item Universelle Nummerierung (Broadcomm SoC numbering)
+				\item Unabhängig von Programmiersprache
+			\end{itemize}~& 
+			\begin{itemize}
+				\item Unintuitiv (keine ersichtliche Reihenfolge o.ä.)
+				\item Nummerierung von Gerät abhängig (Raspberry Pi 1 ist anders als Raspberry Pi 2)
+			\end{itemize}~
+	\\\hline
+	\textbf{BOARD} & 
+		\begin{itemize}
+			\item Einfache Durchnummerierung der PINS
+			\item Gerätunabhängige Nummerierung
+		\end{itemize}~& 
+		\begin{itemize}
+			\item PIN 5 auf Raspberry Pi 1 hat möglicherweise andere Funktion als PIN 5 auf Raspberry Pi 2
+		\end{itemize}~
+	\\\hline
 \end{tabular}
-
-
 
 \section*{Quellen}
 \href{https://en.wikipedia.org/wiki/General-purpose_input/output}{Wikipedia Artikel zu GPIO}\\
-\href{http://www.mikrocontroller.net/articles/HD44780}{Microkontroller.net Beschreibung zu HD44780}\\
+\href{http://www.mikrocontroller.net/articles/HD44780}{Mikrocontroller.net Beschreibung zu HD44780}\\
+\href{http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/}{Makezine GPIO Tutorial (u.a. über PIN Modi)}
 
 \part{Beschreibung HD44780 LCD Display}
 \section{Register}
