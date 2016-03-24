@@ -61,7 +61,7 @@ bindingoffset=0mm, top=20mm,bottom=20mm}
 \begin{tabular}{| p{3.5cm} | p{10cm} |}
 	\hline
 	\textbf{Abkürzung} & General Purpose Input/Output\\\hline
-	\textbf{Übertragungsraten} & -\\\hline
+	\textbf{Übertragungsraten} & $Taktfrequenz \times Anzahl PINs \times Encoding Bitrate$ \\\hline
 	\textbf{Anschluss} & -\\\hline
 	\textbf{Topologie} & -\\\hline
 	\textbf{Synchron/Asynchron} & Beides möglich\\\hline
@@ -95,8 +95,10 @@ Das Raspberry unterstützt grundlegend zwei Modi, über welche die GPIO PINS ang
 			\begin{itemize}
 				\item Unintuitiv (keine ersichtliche Reihenfolge o.ä.)
 				\item Nummerierung von Gerät abhängig (Raspberry Pi 1 ist anders als Raspberry Pi 2)
-			\end{itemize}~
-	\\\hline
+			\end{itemize}~\\
+	&
+	\multicolumn{2}{|c|}{\includegraphics[width=0.49\textwidth]{images/bcm.png}}~\\\hline
+	
 	\textbf{BOARD} & 
 		\begin{itemize}
 			\item Einfache Durchnummerierung der PINS
@@ -105,13 +107,21 @@ Das Raspberry unterstützt grundlegend zwei Modi, über welche die GPIO PINS ang
 		\begin{itemize}
 			\item PIN 5 auf Raspberry Pi 1 hat möglicherweise andere Funktion als PIN 5 auf Raspberry Pi 2
 		\end{itemize}~
-	\\\hline
+	\\
+	&
+	\multicolumn{2}{|c|}{\includegraphics[width=0.49\textwidth]{images/board.png}}~\\\hline
+	
 \end{tabular}
+
+\subsection{Übertragungs-Modi}
+Für eine Übertragung von Daten oder Zeichen an ein Interface sind zwei Modi verfügbar, der 4Bit- und der 8Bit-Modus. Über einen GPIO PIN wird jeweils ein Bit übertragen, was bedeutet, dass im 4Bit-Modus 4 Verbindungen und im 8Bit-Modus 8 Verbindungen nötig sind.\par
+Während im 8Bit-Modus alle Zeichen gleichzeitig übertragen werden können, muss der 4Bit Modus ein Byte aufsplitten, indem zuerst die höheren 4Bit und darauffolgend die tieferen 4Bit übertragen werden.
 
 \section*{Quellen}
 \href{https://en.wikipedia.org/wiki/General-purpose_input/output}{Wikipedia Artikel zu GPIO}\\
 \href{http://www.mikrocontroller.net/articles/HD44780}{Mikrocontroller.net Beschreibung zu HD44780}\\
-\href{http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/}{Makezine GPIO Tutorial (u.a. über PIN Modi)}
+\href{http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/}{Makezine GPIO Tutorial (u.a. über PIN Modi)}\\
+\href{https://projects.drogon.net/raspberry-pi/gpio-examples/lcd-interface/}{Artikel zu LCD Displays am Raspberry Pi}
 
 \part{Beschreibung HD44780 LCD Display}
 \section{Register}
