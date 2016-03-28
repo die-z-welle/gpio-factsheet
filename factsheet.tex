@@ -118,7 +118,7 @@ Das Raspberry unterstützt grundlegend zwei Modi, über welche die GPIO PINS ang
 \subsection*{Übertragungs-Modi}
 Für eine Übertragung von Daten oder Zeichen an ein Interface sind zwei Modi verfügbar, der 4Bit- und der 8Bit-Modus. Über einen GPIO PIN wird jeweils ein Bit übertragen, was bedeutet, dass im 4Bit-Modus 4 Verbindungen und im 8Bit-Modus 8 Verbindungen nötig sind.\par
 Während im 8Bit-Modus alle Zeichen gleichzeitig übertragen werden können, muss der 4Bit Modus ein Byte aufsplitten, indem zuerst die höheren 4Bit und darauffolgend die tieferen 4Bit übertragen werden.
-
+\newpage
 \part{Beschreibung LCD Display (HD44780 kompatibel)}
 \section*{Facts}
 \begin{tabular}{| p{3.5cm} | p{10cm} |}
@@ -137,7 +137,18 @@ Während im 8Bit-Modus alle Zeichen gleichzeitig übertragen werden können, mus
 	\textbf{Treiber} & Betrieb mit HD44780-Treiber möglich\\\hline
 \end{tabular}
 
+\section*{Pinlayout}
+\begin{figure}[h!t]
+	\includegraphics[width=\textwidth]{./images/pinlayout_hd44780.png}
+	\caption{Pinlayout des HD44780 LCD-Displays}
+\end{figure}
+
 \section*{Instruktionsset Beispiel}
+\subsection*{Register Select}
+Über PIN4 (RS) des HD44780 kann zwischen ``Instruction``- und ``Character``-Mode gewechselt werden.\\\\
+Im ``Instruction``-Modus (Spannung auf RS PIN ist ``\textit{low}``) werden die Inputs auf den Daten-PINS (D7 - D0) als Instruktion, wie z.B. ``\textit{clear display}`` oder ``\textit{move cursor}`` interpretiert.\\
+Im ``Character``-Modus (Spannung auf RS PIN ist ``\textit{high}``) werden die Inputs als Buchstabe eingelesen. Dieser wird auf dem Feld, auf dem der Cursor gerade steht, angezeigt.
+
 \subsection*{8Bit Modus}
 \begin{tabular}{| c | c | l |}
 	\hline
@@ -169,8 +180,6 @@ Im 4Bit-Modus sind die PINs D3 bis D0 geerdet, Instruktionen erfolgen nur über 
 	1 & \ldots & Zweite 4Bit der 8Bit Character Repräsentation \\\hline
 \end{tabular}
 
-\section*{Register}
-
 \newpage
 
 \section*{Codebeispiel}
@@ -190,5 +199,6 @@ Mit GPIO.setup kann ein Pin als Input oder Ouput definiert werden. Mit GPIO.inpu
 \href{http://www.protostack.com/download/YJD1602A-1\%20datasheet.pdf}{Datasheet Arduino LCD Modul}\\
 \href{http://www.protostack.com/blog/2010/03/character-lcd-displays-part-1/}{LCD Ansteuerung 8Bit- und 4Bit-Modus}\\
 \href{http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/217-getting-started-with-raspberry-pi-gpio-and-python}{Raspberry Pi und GPIO Tutorial}
+\href{http://www.learningaboutelectronics.com/Articles/HD44780-LCD-register-select-RS-pin}{Register Shift HD44780}
 
 \end{document}
