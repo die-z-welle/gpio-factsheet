@@ -11,6 +11,8 @@
 \usepackage{enumerate}
 \usepackage{hyperref} 
 
+\usepackage{listings}
+
 \usepackage{geometry}
 \geometry{total={210mm,297mm},
 left=25mm,right=25mm,%
@@ -169,17 +171,24 @@ Im 4Bit-Modus sind die PINs D3 bis D0 geerdet, Instruktionen erfolgen nur über 
 
 \section*{Register}
 
+\newpage
 
 \section*{Codebeispiel}
+Dieses Codebeispiel zeigt auf einfache Art wie GPIO grundsätzlich funktioniert. Am Pin 18 ist eine LED und an Pin 11 ein Button angeschlossen.
+Die While-Schlaufe setzt den Pin 18 auf 255 (true) falls der Button gedrückt wird und umgekehrt.\\
+
+\lstinputlisting[language=Python, frame=single]{GPIO-Example.py}
+Mit GPIO.setup kann ein Pin als Input oder Ouput definiert werden. Mit GPIO.input oder GPIO.output kann der Wert eines Pins gelesen bzw. gesetzt werden.
 
 
 \section*{Quellen}
 \href{https://en.wikipedia.org/wiki/General-purpose_input/output}{Wikipedia Artikel zu GPIO}\\
 \href{http://www.mikrocontroller.net/articles/HD44780}{Mikrocontroller.net Beschreibung zu HD44780}\\
 \href{http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/}{Makezine GPIO Tutorial (u.a. über PIN Modi)}\\
-\href{https://projects.drogon.net/raspberry-pi/gpio-examples/lcd-interface/}{Artikel zu LCD Displays am Raspberry Pi}
-\href{https://www.sparkfun.com/datasheets/LCD/HD44780.pdf}{Datasheet HHD44780}
-\href{http://www.protostack.com/download/YJD1602A-1\%20datasheet.pdf}{Datasheet Arduino LCD Modul}
-\href{http://www.protostack.com/blog/2010/03/character-lcd-displays-part-1/}{LCD Ansteuerung 8Bit- und 4Bit-Modus}
+\href{https://projects.drogon.net/raspberry-pi/gpio-examples/lcd-interface/}{Artikel zu LCD Displays am Raspberry Pi}\\
+\href{https://www.sparkfun.com/datasheets/LCD/HD44780.pdf}{Datasheet HHD44780}\\
+\href{http://www.protostack.com/download/YJD1602A-1\%20datasheet.pdf}{Datasheet Arduino LCD Modul}\\
+\href{http://www.protostack.com/blog/2010/03/character-lcd-displays-part-1/}{LCD Ansteuerung 8Bit- und 4Bit-Modus}\\
+\href{http://openmicros.org/index.php/articles/94-ciseco-product-documentation/raspberry-pi/217-getting-started-with-raspberry-pi-gpio-and-python}{Raspberry Pi und GPIO Tutorial}
 
 \end{document}
